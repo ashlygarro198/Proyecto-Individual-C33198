@@ -21,8 +21,3 @@ print(cor(movies$budget, movies$ROI, use = "complete.obs"))
 print(cor(movies$budget, movies$runtime, use = "complete.obs"))
 
 #==============================================================
-sink("outputs/estadisticas.txt")
-summary(movies$budget)
-summary(movies$revenue)
-cor(movies$budget, movies$revenue, use="complete.obs")
-sink()  # cierra el archivo
