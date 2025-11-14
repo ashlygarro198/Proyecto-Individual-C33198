@@ -1,6 +1,19 @@
+##############################
+# Nombre del archivo: limpieza_datos.R
+# Autor: Ashly Garro
+# Curso: Herramientas para Ciencias de Datos I
+# Fecha: 2025
+# Descripción: Carga de datos y limpieza/exploracion
+##############################
+
 # 1. Importacion de datos
 movies <- read.csv("data/movies_metadata.csv")
+#==============================================================
 
+# Inspección inicial
+str(movies)
+summary(movies)
+colSums(is.na(movies))
 #==============================================================
 
 # 2. Limpieza de datos
@@ -23,12 +36,12 @@ movies <- movies %>%
     ROI = (revenue - budget)/budget
   ) 
 
+# Ajuste para ROI_log
 min_ROI <- min(movies$ROI, na.rm = TRUE)
 movies <- movies %>%
   mutate(ROI_log = log(ROI + 1 - min_ROI))
 
-## Se revisan los datos de los primeros registros
-print(head(movies))
+
 ##Se crean rangos de presupuesto
 movies <- movies %>%
   mutate(
@@ -37,5 +50,6 @@ movies <- movies %>%
     labels = c("Muy bajo", "Bajo", "Medio", "Alto", "Muy alto"))
   )
 
-
+## Se revisan los datos de los primeros registros
+print(head(movies))
 #==============================================================
